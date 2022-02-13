@@ -50,7 +50,7 @@ Our users will be able to enter details for the animals in the park, their enclo
 
 - Set up the tables in a postgres database.
 
-```
+```sql
 
 -- ******************************* --
 --      CLEAR EXISTING TABLE(S)    --
@@ -98,7 +98,7 @@ enclosure_id INT REFERENCES enclosure(enclosure_id)
 
 - Populate the tables with some of your own data. (Don't worry about the capacity restriction on enclosures for now, checking the would be handled by the back-end before the data gets sent to the database.)
 
-```
+```sql
 
 -- ******************************* --
 --            INSERT DATA          --
@@ -172,7 +172,7 @@ INSERT INTO assignment (staff_id, enclosure_id, assignment_day) VALUES
 
 1. The names of the animals in a given enclosure
 
-```
+```sql
 
 -- Select animal name(s) from the animal table
 SELECT animal.name 
@@ -194,7 +194,7 @@ WHERE enclosure.enclosure_id = 1 OR enclosure.enclosure_name = 'The Loud Trees';
 
 2. The names of the staff working in a given enclosure
 
-```
+```sql
 
 -- Select staff names from the staff table
 SELECT DISTINCT staff.name 
@@ -215,7 +215,7 @@ Write queries to find:
 
 3. The names of staff working in enclosures which are closed for maintenance
 
-```
+```sql
 
 SELECT DISTINCT staff.name 
 FROM staff
@@ -230,7 +230,7 @@ WHERE enclosure.closedformaintenance IS TRUE;
 
 4. Find the name of the enclosure where the oldest animal lives
 
-```
+```sql
 
 If there are two animals who are the same age choose the first one alphabetically. */
 SELECT enclosure.enclosure_name as "Enclosure", animal.name as "Animal"
@@ -244,7 +244,7 @@ ORDER BY animal.name ASC LIMIT 1;
 
 5. The number of different animal types a given keeper has been assigned to work with
 
-```
+```sql
 
 SELECT COUNT(DISTINCT animal.type)
 FROM animal
@@ -258,7 +258,7 @@ WHERE assignment.staff_id = 3;
 
 6. The number of different keepers who have been assigned to work in a given enclosure
 
-```
+```sql
 
 SELECT COUNT(DISTINCT staff.name)
 FROM staff
@@ -270,7 +270,7 @@ WHERE assignment.enclosure_id = 4;
 
 7. The names of the other animals sharing an enclosure with a given animal (eg. find the names of all the animals sharing the big cat field with Tony)
 
-```
+```sql
 
 SELECT animal.name FROM animal
 INNER JOIN enclosure ON enclosure.enclosure_id = animal.enclosure_id
